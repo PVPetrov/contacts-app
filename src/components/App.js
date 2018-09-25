@@ -4,6 +4,8 @@ import { Layout, Menu, Button } from 'antd';
 import Contacts from './Contacts';
 import Homepage from './Homepage';
 import Profile from './Profile';
+import LoginPage from './LoginPage';
+
 import './App.css';
 
 const { Header, Content, Footer } = Layout;
@@ -14,19 +16,19 @@ class App extends Component{
         height: 0
     }
 
-    componentWillMount(){
+    componentWillMount = () => {
         this.resizeHeight();
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         window.addEventListener("resize", this.resizeHeight.bind(this));
     }
 
-    componentWillUnmount() {
+    componentWillUnmount = () => {
         window.removeEventListener("resize", this.resizeHeight.bind(this));
     }
 
-    resizeHeight(){
+    resizeHeight = () => {
         const height = window.innerHeight;
         this.setState({height});
     }
@@ -41,14 +43,15 @@ class App extends Component{
                     >
                         <Menu
                             mode="horizontal"
+                            defaultSelectedKeys={['1']}
                         >
-                            <Menu.Item key="home"><Link to="/">Home</Link></Menu.Item>
-                            <Menu.Item key="contacts"><Link to="/contacts">Contacts</Link></Menu.Item>
-                            <Menu.Item key="profile"><Link to="/profile">Profile</Link></Menu.Item>
+                            <Menu.Item key="1"><Link to="/"><h3>Home</h3></Link></Menu.Item>
+                            <Menu.Item key="2"><Link to="/contacts"><h3>Contacts</h3></Link></Menu.Item>
+                            <Menu.Item key="3"><Link to="/profile"><h3>Profile</h3></Link></Menu.Item>
                         </Menu>
                         <Button type="primary"
                             style={{margin: '0 1em 0 auto', alignSelf: 'center'}}
-                        >Log In / Sign up</Button>
+                        ><Link to="/login">Log In / Sign up</Link></Button>
                     </Layout>
                 </Header>
                 <Content
@@ -56,6 +59,7 @@ class App extends Component{
                     <Switch>
                         <Route path="/contacts" component={Contacts}/>
                         <Route path="/profile" component={Profile}/>
+                        <Route path="/login" component={LoginPage}/>
                         <Route exact path="/" component={Homepage} />
                         <Route render={ () => (<div>Page Not Found</div>)}/>
                     </Switch>
