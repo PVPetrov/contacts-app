@@ -15,5 +15,11 @@ const Root = ({store}) => (
 export default Root;
 
 Root.propTypes = {
-    store: PropTypes.isRequired
+    store: PropTypes.shape({
+        dispatch: PropTypes.func,
+        getState: PropTypes.func,
+        liftedStore: PropTypes.object,
+        replaceReducer: PropTypes.func,
+        subscribe: PropTypes.func,
+    }).isRequired
 }
