@@ -1,13 +1,16 @@
-/* eslint-disable */
+/* eslint-dissable */
+
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/index';
+
 
 const configureStore = () => {
     const middleware = [thunk];
-    const store = createStore(rootReducer, devToolsEnhancer(applyMiddleware(...middleware)));
+    const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
     return store;
 }
+
 
 export default configureStore;
